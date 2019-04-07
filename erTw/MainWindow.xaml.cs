@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using erTw.Twitter.Lib;
 
 namespace erTw {
     /// <summary>
@@ -35,11 +36,11 @@ namespace erTw {
 
         private void GetTweets() {
 
-            var twitter = new Twitter(ConsumerKey, ConsumerKeySecret, AccessToken, AccessTokenSecret);
+            var twitter = new Twitter.Lib.Twitter(ConsumerKey, ConsumerKeySecret, AccessToken, AccessTokenSecret);
 
             var response = twitter.GetTweetsHome("rodriguezefs", 100);
 
-            dynamic timeline = JsonConvert.DeserializeObject(response);
+            var timeline = JsonConvert.DeserializeObject(response);
             lstTweets.DataContext = timeline;
         }
     }

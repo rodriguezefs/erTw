@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 using System.Security.Cryptography;
 using System.IO;
 
-namespace erTw {
+namespace erTw.Twitter.Lib {
     public class Twitter {
         public const string OauthVersion = "1.0";
         public const string OauthSignatureMethod = "HMAC-SHA1";

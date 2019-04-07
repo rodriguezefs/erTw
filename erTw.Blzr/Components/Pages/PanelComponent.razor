@@ -1,0 +1,16 @@
+﻿@page "/PanelComponent"
+
+<div class="panel panel-sucess">
+    <div class="panel-heading">@Title</div>
+    <div class="panel-body">
+        @ChildContent
+    </div>
+</div>
+
+@functions{ 
+    [Parameter]
+    private string Title { get; set; }
+
+    [Parameter]
+    private RenderFragment ChildContent { get; set; }
+}
