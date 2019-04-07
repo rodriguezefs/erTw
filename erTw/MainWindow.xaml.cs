@@ -27,7 +27,6 @@ namespace erTw {
         const string AccessToken = "51357501-ZlzXYYQNJwBrtO1mWmQGfdZxvt6OnxzVEg2g564nI";
         const string AccessTokenSecret = "fhb1CAkVSZuoeb5jjWuEWQLxYZACSUeQ1r7fPD0";
 
-
         public MainWindow() {
             InitializeComponent();
 
