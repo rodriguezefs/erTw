@@ -1,5 +1,7 @@
 ﻿@page "/"
 @using erTw.Twitter.Lib
+@using 
+@inject Twitter
 
 <h2>Twitter Home</h2>
 
@@ -12,9 +14,8 @@
 
     private Twitter twitter = new Twitter(ConsumerKey, ConsumerKeySecret, AccessToken, AccessTokenSecret);
     
-    //private dynamic response = GetTweetsHome("rodriguezefs", 100);
+    private string response = twitter.GetTweetsHome("rodriguezefs", 100);
 
-    //List<Tweet> timeline = JsonConvert.DeserializeObject(response);
-
+    List<Tweet> timeline = JsonConvert.DeserializeObject(response);
 
 }
