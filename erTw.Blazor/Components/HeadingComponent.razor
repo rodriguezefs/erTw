@@ -1,0 +1,9 @@
+﻿@page "/HeadingComponent"
+
+<h1 style="font-style:@_headingFontStyle">@Title</h1>
+
+@code {
+    [Parameter] public string Title { get; set; }
+
+    string _headingFontStyle = "italic";
+}

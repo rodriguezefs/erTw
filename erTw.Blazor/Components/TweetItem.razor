@@ -1,0 +1,16 @@
+﻿<li class="list-group-item">
+    <div class="media m-4">
+        <img src="@tweet.user.profile_image_url" class="mr-3" />
+        <div class="media-body">
+            <h5>@tweet.user.name <small>@@@tweet.user.screen_name</small></h5>
+            <small>@tweet.created_at</small>
+            <p>@tweet.text</p>
+        </div>
+    </div>
+</li>
+
+@code {
+    [Parameter]
+    public Tweet tweet { get; set; }
+
+}

@@ -1,0 +1,31 @@
+﻿@page "/"
+@using Humanizer
+@using System.Globalization
+
+<div class="container">
+    @if (TimeLine == null)
+    {
+        <p>No Data</p>
+    }
+    else
+    {
+        <ul class="list-group">
+            @foreach (var tweet in TimeLine)
+            {
+                <li class="list-group-item">
+                    <div class="media m-4">
+                        <img src="@tweet.user.profile_image_url" class="mr-3" />
+                        <div class="media-body">
+                            <h5>@tweet.user.name <small>@@@tweet.user.screen_name</small></h5>
+                            @*@{ DateTime lxDate = DateTime.ParseExact(tweet.created_at, "o", CultureInfo.InvariantCulture, DateTimeStyles.None);
+                                string lxHDate = lxDate.Humanize();
+                                }*@
+                            <p><small>@tweet.created_at</small></p>
+                            @tweet.text
+                        </div>
+                    </div>
+                </li>
+            }
+        </ul>
+    }
+</div>
