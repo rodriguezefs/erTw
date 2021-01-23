@@ -1,6 +1,6 @@
 ﻿@page "/"
-@using Humanizer
-@using System.Globalization
+@using erTw.Blazor.Components
+@using erTw.Twitter.Lib;
 
 <div class="container">
     @if (TimeLine == null)
@@ -17,11 +17,48 @@
                         <img src="@tweet.user.profile_image_url" class="mr-3" />
                         <div class="media-body">
                             <h5>@tweet.user.name <small>@@@tweet.user.screen_name</small></h5>
-                            @*@{ DateTime lxDate = DateTime.ParseExact(tweet.created_at, "o", CultureInfo.InvariantCulture, DateTimeStyles.None);
-                                string lxHDate = lxDate.Humanize();
-                                }*@
-                            <p><small>@tweet.created_at</small></p>
-                            @tweet.text
+                            <small>@tweet.created_at</small>
+                            @{
+                                var urls = tweet.entities.urls;
+                                string lxTweetText = tweet.text;
+                                if (urls != null)
+                                {
+                                    foreach (var lxurl in urls)
+                                    {
+                                        lxTweetText = erTw.Extensions.ReplaceUrl(lxTweetText, 
+                                                                                (string)lxurl.url, 
+                                                                                (string)lxurl.expanded_url, 
+                                                                                (string)lxurl.display_url);
+                                    }
+                                }
+                            }
+                            <p>@((MarkupString)lxTweetText)</p>
+
+                            @{
+                                var media = tweet.entities..media;
+                                var type = tweet.entities.type;
+
+                                if (media != null)
+                                {
+                                    foreach (var m in media)
+                                    {
+                                        if (m.type == "photo")
+                                        {
+                                            <img src="@m.media_url" class="img-fluid rounded mx-auto d-block" alt="..." />
+                                        }
+                                        else if (m.type == "video")
+                                        {
+                                            <div class="img-fluid">
+                                                <video width="@m.sizes.small.w" height="@m.sizes.small.h" controls>
+                                                    <source src="@m.video_info.variants[0].url" type="@m.video_info.variants[0].content_type">
+                                                </video>
+                                            </div>
+                                        }
+                                    }
+                                }
+                            }
+
+
                         </div>
                     </div>
                 </li>

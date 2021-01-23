@@ -24,5 +24,16 @@ namespace erTw
 
             return body.ToString();
         }
+
+        public static string ReplaceUrl(string tweetText, 
+                                        string oldUrl,
+                                        string expandedUrl,
+                                        string displayUrl)
+        {
+            string lxReplaceStrUrl = $"<a href='{expandedUrl}' target='_blank'>{displayUrl}</a>";
+            string lxUrl = oldUrl;
+
+            return tweetText.Replace(lxUrl, lxReplaceStrUrl);
+        }
     }
 }
